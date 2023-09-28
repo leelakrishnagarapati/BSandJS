@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date and Time Display</title>
+    <script>
+        function displayDate() {
+            let currentDate = new Date();
+            let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let dateFormatted = `${currentDate.getDate()} ${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+            document.getElementById('dateResult').innerHTML = "Date: " + dateFormatted;
+        }
+        function displayTime() {
+            let currentTime = new Date();
+            let day = currentTime.toLocaleDateString('en-US', { weekday: 'short' });
+            let month = currentTime.toLocaleDateString('en-US', { month: 'short' });
+            let date = currentTime.getDate();
+            let year = currentTime.getFullYear();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+            let timeZoneOffset = currentTime.getTimezoneOffset();
+            let gmtHours = Math.abs(Math.floor(timeZoneOffset / 60));
+            let gmtMinutes = Math.abs(timeZoneOffset % 60);
+            let gmtSign = timeZoneOffset >= 0 ? '-' : '+';
+            let timeFormatted = `${day} ${month} ${date} ${year} ${hours}:${minutes}:${seconds} GMT${gmtSign}${gmtHours}:${gmtMinutes} (India Standard Time)`;
+            document.getElementById('timeResult').innerHTML = "Time: " + timeFormatted;
+        }
+    </script>
+</head>
+<body>
+    <h1>Date and Time Display</h1>
+    <button onclick="displayDate()">Show Date</button>
+    <p id="dateResult"></p>
+    <br>
+    <button onclick="displayTime()">Show Time</button>
+    <p id="timeResult"></p>
+</body>
+</html>
